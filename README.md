@@ -1,43 +1,81 @@
-# 🧰 kali-auto-updater
+# 🚀 Kali Linux Auto-Updater Script
 
-![Shell Script](https://img.shields.io/badge/language-Bash-blue?logo=gnu-bash)
-![Status](https://img.shields.io/badge/status-Active-brightgreen)
-![OS](https://img.shields.io/badge/platform-Kali%20Linux-black?logo=linux)
+![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kali-linux&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-A simple Bash script to update, upgrade, and clean your Kali Linux system — all in one command.
+A simple yet powerful Bash script to automate Kali Linux system updates, upgrades, and cleanup.
 
----
+## ✨ Features
 
-## ⚙️ Features
+- **One-command automation**: Handles all update operations in sequence
+- **Root verification**: Automatically checks for sudo privileges
+- **Verbose output**: Clear progress indicators with emoji visuals
+- **System cleanup**: Removes obsolete packages and cleans cache
+- **Lightweight**: Single script with no dependencies
 
-This script runs the following commands automatically:
+## 🛠️ Script Contents (updatesys.sh)
 
 ```bash
-sudo apt update
-sudo apt upgrade -y
-sudo apt full-upgrade -y
-sudo apt autoremove -y
-sudo apt clean -y
-sudo kill-tools-upgrade
+#!/bin/bash
 
-⚠️ kill-tools-upgrade is not a standard command.
-If it's not installed on your system, you can safely remove or replace it.
+# =============================================
+# Kali Linux Auto-Updater
+# Version 2.0 - Optimized
+# =============================================
 
-🚀 How to Use
-1-Download the script:
-git clone https://github.com/wizardOfOz669/kali-auto-updater.git
-cd kali-auto-updater
-2- Make it executable:
-chmod +x updatesys.sh
-3- Run the script:
-./updatesys.sh
+# Verify root privileges
+if [ "$(id -u)" -ne 0 ]; then
+  echo "❗ Please run with sudo"
+  echo "Example: sudo ./updatesys.sh"
+  exit 1
+fi
 
-📁 File Structure
+echo -e "\n🔹 Starting system update..."
+sleep 1
 
-kali-auto-updater/
-├── updatesys.sh   # 🔧 Main update script
-└── README.md      # 📄 Project documentation
+# Update package lists
+echo -e "\n🔸 Updating package lists..."
+apt update
 
-👨‍💻 Author
-Made with 💻 by WizardOfOz669
-If you like it, ⭐ the repo and share with fellow hackers!
+# Upgrade system
+echo -e "\n🔸 Upgrading packages..."
+apt upgrade -y
+apt full-upgrade -y
+
+# Cleanup
+echo -e "\n🔸 Cleaning system..."
+apt autoremove -y
+apt clean -y
+
+echo -e "\n✅ System update completed successfully!"
+🚦 Requirements
+
+    Kali Linux system
+
+    sudo/root privileges
+
+    Internet connection
+
+⚡ Quick Start
+1- Download the script:
+    git clone https://github.com/wizardOfOz669/kali-auto-updater.git
+    cd kali-auto-updater
+
+2- Make executable:
+    chmod +x updatesys.sh
+
+3- Run with sudo:
+    sudo ./updatesys.sh
+⚠️ Important Notes
+
+    Always back up important data before system upgrades
+
+    Recommended to run in a terminal (not through GUI)
+
+    Monitor the process if running on critical systems
+
+📜 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+Made with ❤️ by WizardOfOz669
